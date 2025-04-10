@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const initialBooksData = [
   {
@@ -20,10 +20,29 @@ const initialBooksData = [
 ];
 
 export default function Home() {
-  const [books, setBooks] = useState(initialBooksData);
+  const [books, setBooks] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState("todos");
   const [darkMode, setDarkMode] = useState(false);
   const [newTitle, setNewTitle] = useState("");
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+    const savedBooks = localStorage.getItem("books");
+    if (savedBooks) {
+      setBooks(JSON.parse(savedBooks));
+    } else {
+      setBooks(initialBooksData);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (hasMounted) {
+      localStorage.setItem("books", JSON.stringify(books));
+    }
+  }, [books, hasMounted]);
+
+  if (!hasMounted) return null;
 
   const filteredBooks =
     selectedStatus === "todos"
@@ -50,7 +69,7 @@ export default function Home() {
     if (data.items && data.items.length > 0) {
       const bookInfo = data.items[0].volumeInfo;
       const newBook = {
-        id: Date.now(),
+        id: crypto.randomUUID(),
         title: bookInfo.title || newTitle,
         author: bookInfo.authors ? bookInfo.authors[0] : "Autor desconhecido",
         cover: bookInfo.imageLinks ? bookInfo.imageLinks.thumbnail : "",
@@ -58,6 +77,21 @@ export default function Home() {
       };
       setBooks([newBook, ...books]);
       setNewTitle("");
+    }
+  };
+
+  const handleStatusChange = (id, newStatus) => {
+    setBooks(
+      books.map((book) =>
+        book.id === id ? { ...book, status: newStatus } : book
+      )
+    );
+  };
+
+  const handleDeleteBook = (id) => {
+    const confirmDelete = window.confirm("Tem certeza que deseja remover este livro?");
+    if (confirmDelete) {
+      setBooks(books.filter((book) => book.id !== id));
     }
   };
 
@@ -72,7 +106,7 @@ export default function Home() {
         transition: "all 0.3s ease-in-out",
       }}
     >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         <h1
           style={{
             fontSize: "2.5rem",
@@ -80,23 +114,27 @@ export default function Home() {
             fontWeight: "bold",
             color: darkMode ? colors.accent : colors.secondary,
             letterSpacing: "1px",
+            textAlign: "center",
+            width: "100%",
           }}
         >
           📚 Meus Livros
         </h1>
-        <button
-          onClick={toggleDarkMode}
-          style={{
-            background: "none",
-            border: `1px solid ${darkMode ? colors.light : colors.primary}`,
-            color: darkMode ? colors.light : colors.primary,
-            padding: "0.5rem 1rem",
-            borderRadius: "8px",
-            cursor: "pointer",
-          }}
-        >
-          {darkMode ? "Modo Claro" : "Modo Escuro"}
-        </button>
+        <div style={{ alignSelf: "flex-end" }}>
+          <button
+            onClick={toggleDarkMode}
+            style={{
+              background: "none",
+              border: `1px solid ${darkMode ? colors.light : colors.primary}`,
+              color: darkMode ? colors.light : colors.primary,
+              padding: "0.5rem 1rem",
+              borderRadius: "8px",
+              cursor: "pointer",
+            }}
+          >
+            {darkMode ? "Modo Claro" : "Modo Escuro"}
+          </button>
+        </div>
       </div>
 
       <div style={{ marginBottom: "1rem", display: "flex", gap: "1rem" }}>
@@ -150,6 +188,7 @@ export default function Home() {
                 : "0 4px 12px rgba(0, 0, 0, 0.1)",
               transition: "all 0.3s ease-in-out",
               color: darkMode ? colors.light : colors.primary,
+              position: "relative",
             }}
           >
             <img
@@ -159,29 +198,42 @@ export default function Home() {
             />
             <h2 style={{ fontSize: "1.2rem", margin: "1rem 0 0.5rem" }}>{book.title}</h2>
             <p style={{ fontWeight: "bold", marginBottom: "0.5rem" }}>{book.author}</p>
-            <p
+
+            <select
+              value={book.status}
+              onChange={(e) => handleStatusChange(book.id, e.target.value)}
               style={{
-                fontSize: "0.9rem",
-                fontWeight: "bold",
-                color:
-                  book.status === "concluído"
-                    ? darkMode
-                      ? "#eeffdb"
-                      : "#2e2e2e"
-                    : book.status === "lendo"
-                    ? darkMode
-                      ? "#7345d6"
-                      : "#6743a5"
-                    : darkMode
-                    ? "#a69cda"
-                    : "#594747",
+                marginBottom: "0.5rem",
+                padding: "0.4rem",
+                borderRadius: "6px",
+                background: darkMode ? colors.dark : "#f4f4f4",
+                color: darkMode ? colors.light : colors.primary,
+                border: `1px solid ${darkMode ? colors.light : colors.primary}`,
               }}
             >
-              {book.status}
-            </p>
+              <option value="leia">Leia</option>
+              <option value="lendo">Lendo</option>
+              <option value="concluído">Concluído</option>
+            </select>
+
+            <button
+              onClick={() => handleDeleteBook(book.id)}
+              style={{
+                marginTop: "0.5rem",
+                background: "none",
+                border: `1px solid ${darkMode ? "#ff6b6b" : "#b00020"}`,
+                color: darkMode ? "#ff6b6b" : "#b00020",
+                padding: "0.4rem 0.6rem",
+                borderRadius: "6px",
+                cursor: "pointer",
+              }}
+            >
+              Remover
+            </button>
           </div>
         ))}
       </div>
     </div>
   );
 }
+
