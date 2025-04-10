@@ -1,17 +1,69 @@
-📚 MicroSaaSBooks
-Esse é um projeto pessoal criado por um iniciante que está aprendendo a programar com Next.js, JavaScript, Node.js, HTML e CSS. O objetivo é desenvolver um microSaaS simples, onde eu possa cadastrar, visualizar e organizar livros que já li ou quero ler.
+# 📚 Meus Livros — MicroSaaS Pessoal
 
-A ideia é deixar o visual limpo e bonito, com as capas dos livros em destaque, as cores eu ainda estou vendo o que é melhor. Além disso, quero usar esse projeto como uma forma de praticar conceitos importantes como:
+Aplicativo pessoal para organizar livros lidos, em leitura ou que você deseja ler. Desenvolvido como estudo prático de **Next.js**, **React**, **JavaScript** e **Local Storage**, sem uso de banco de dados.
 
-Estrutura de projetos com Next.js
+## 🚀 Funcionalidades
 
-Criação de componentes visuais
+- Adicionar livros pelo título (usando a API do Google Books)
+- Exibir capa, autor e status de leitura
+- Filtrar livros por status: Concluído, Lendo ou Leia
+- Alternar entre modo escuro e claro
+- Atualizar o status dos livros
+- Excluir livros com confirmação visual
+- Persistência dos dados usando Local Storage
+- Interface moderna, responsiva e intuitiva
 
-Estilização com CSS
+## 🛠️ Tecnologias Utilizadas
 
-Trabalhar com dados e imagens externas
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- JavaScript (ES6+)
+- HTML & CSS (inline styling)
+- [Google Books API](https://developers.google.com/books)
+- Local Storage
 
-Integração futura com banco de dados e autenticação
+## 💡 Futuras melhorias
 
-🚧 O projeto ainda está em desenvolvimento!
-Estou documentando tudo aqui no GitHub conforme for aprendendo e evoluindo. Toda sugestão ou feedback é bem-vinda!
+- Transformar em PWA (Progressive Web App)
+- Suporte a múltiplos usuários com autenticação
+- Animações e transições suaves
+
+## 📸 Preview
+
+> *(Adicione aqui prints da aplicação ou um link do projeto online, caso publique no Vercel por exemplo.)*
+
+---
+
+## 🌍 My Books — Personal MicroSaaS
+
+A personal app to organize books you've read, are reading, or want to read. Built as a learning project using **Next.js**, **React**, **JavaScript**, and **Local Storage** — no database needed!
+
+### 🚀 Features
+
+- Add books by title (using Google Books API)
+- Display book cover, author, and reading status
+- Filter books by status: Completed, Reading, To Read
+- Switch between dark and light mode
+- Update book status
+- Delete books with visual confirmation
+- Data persistence via Local Storage
+- Clean, responsive and modern UI
+
+### 🛠️ Tech Stack
+
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- JavaScript (ES6+)
+- HTML & CSS (inline styling)
+- [Google Books API](https://developers.google.com/books)
+- Local Storage
+
+### 💡 Future Improvements
+
+- Convert to PWA (Progressive Web App)
+- Multi-user support with authentication
+- Smooth animations and transitions
+
+### 📸 Preview
+
+> *(Add screenshots or a live link if you deploy it on Vercel or another platform.)*
