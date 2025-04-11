@@ -28,10 +28,6 @@ Aplicativo pessoal para organizar livros lidos, em leitura ou que você deseja l
 - Suporte a múltiplos usuários com autenticação
 - Animações e transições suaves
 
-## 📸 Preview
-
-> *(Adicione aqui prints da aplicação ou um link do projeto online, caso publique no Vercel por exemplo.)*
-
 ---
 
 ## 🌍 My Books — Personal MicroSaaS
@@ -64,6 +60,3 @@ A personal app to organize books you've read, are reading, or want to read. Buil
 - Multi-user support with authentication
 - Smooth animations and transitions
 
-### 📸 Preview
-
-> *(Add screenshots or a live link if you deploy it on Vercel or another platform.)*
