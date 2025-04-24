@@ -1,5 +1,5 @@
 https://microsaasbooks.vercel.app/
-# 📚 Meus Livros — MicroSaaS Pessoal
+# 📚 Meus Livros — Projeto Livros Pessoal
 
 Aplicativo pessoal para organizar livros lidos, em leitura ou que você deseja ler. Desenvolvido como estudo prático de **Next.js**, **React**, **JavaScript** e **Local Storage**, sem uso de banco de dados.
 
@@ -31,7 +31,7 @@ Aplicativo pessoal para organizar livros lidos, em leitura ou que você deseja l
 
 ---
 
-## 🌍 My Books — Personal MicroSaaS
+## 🌍 My Books — Personal Book Project
 
 A personal app to organize books you've read, are reading, or want to read. Built as a learning project using **Next.js**, **React**, **JavaScript**, and **Local Storage** — no database needed!
 
